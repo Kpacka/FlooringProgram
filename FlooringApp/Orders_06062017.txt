@@ -1,0 +1,3 @@
+OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+1,Packards Test,OH,6.25,Wood,125,5.15,4.75,643.75,593.75,77.343750,1314.843750
+3,TestERBOI,OH,6.25,Tile,125,3.50,4.15,437.50,518.75,59.765625,1016.015625

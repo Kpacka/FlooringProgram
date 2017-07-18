@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/mvc
+          http://www.springframework.org/schema/mvc/spring-mvc.xsd
+          http://www.springframework.org/schema/tx
+          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+          http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/aop  
+          http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+    <!-- Bean definitions go here -->
+    <bean id="myIo" class="com.mycompany.flooringapp.view.UserIoImpl"/>
+    <bean id="productDao" class="com.mycompany.flooringapp.dao.FlooringProductDaoImpl"/>
+    <bean id="taxDao" class="com.mycompany.flooringapp.dao.FlooringTaxesDaoImpl"/>
+    <bean id="orderDao" class="com.mycompany.flooringapp.dao.FlooringOrdersDaoMockImpl"/>
+    <bean id="logic" class = "com.mycompany.flooringapp.service.FlooringLogicImpl">
+        <constructor-arg ref="productDao"/>
+        <constructor-arg ref="taxDao"/>
+        <constructor-arg ref="orderDao"/>
+        <!-- use "TRAINING for training, must be all capitals and spelled correctly
+            -use "PRODUCTION for production-->
+        <constructor-arg type = "java.lang.String" value = "PRODUCTION"/>
+        <!---->
+    </bean>
+    
+    
+    <bean id="myView" class="com.mycompany.flooringapp.view.FlooringView">
+        <constructor-arg ref="myIo"/>
+            
+    </bean>
+    <bean id="controller" class="com.mycompany.flooringapp.controller.FlooringController">
+        <constructor-arg ref="myView"/>
+        <constructor-arg ref="logic"/>
+    </bean>
+    
+    
+</beans>
+
